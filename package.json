@@ -1,0 +1,38 @@
+{
+  "name": "next-pwa-kickoff",
+  "version": "1.1.3",
+  "description": "Simple boilerplate to kickoff Next.JS PWA projects, includes firebase authentication",
+  "main": "pages/index.js",
+  "repository": {
+    "url": "https://github.com/srdjan/next-pwa-kickoff.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "node server.js",
+    "build:next": "chmod -R u+x node_modules/next/dist/bin && next build",
+    "build": "npm run build:next",
+    "start:next": "next start",
+    "start": "NODE_ENV=production node server.js",
+    "deploy": "npm version patch && now --name=klinchit-mvp --public",
+    "format": "prettier-standard 'utils/*.js' 'lib/*.js' 'pages/*.js' 'components/*.js'"
+  },
+  "dependencies": {
+    "@firebase/app": "0.4.18",
+    "@firebase/auth": "0.12.0",
+    "@firebase/firestore": "1.5.4",
+    "@firebase/storage": "0.3.12",
+    "dotenv": "8.1.0",
+    "next": "9.0.7",
+    "next-offline": "4.0.5",
+    "react": "16.10.1",
+    "react-dom": "16.10.1",
+    "reworm": "2.2.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "nextjs",
+    "pwa",
+    "react"
+  ],
+  "author": "djidja8"
+}

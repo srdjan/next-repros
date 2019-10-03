@@ -1,0 +1,5 @@
+node_modules/
+static/sw.js
+.next
+*-error.log
+.DS_store
