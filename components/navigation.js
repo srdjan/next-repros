@@ -1,10 +1,6 @@
 import Link from 'next/link'
 import UsersManagement from '../model/usersManagament'
 
-function isLoggedIn () {
-  return UsersManagement.isLoggedIn()
-}
-
 function signOut () {
   UsersManagement.signOut()
   window.location = window.location.origin
@@ -16,12 +12,12 @@ export default () => (
     <label className='toggle-container' htmlFor='toggle'>
       <span className='button button-toggle' />
     </label>
-    {isLoggedIn() ? (
+    {UsersManagement.isLoggedIn() ? (
       <nav className='nav'>
-        <Link prefetch href='/'>
+        <Link href='/'>
           <a className='nav-item'> Home</a>
         </Link>
-        <Link prefetch href='/about'>
+        <Link href='/about'>
           <a className='nav-item'> About</a>
         </Link>
         <Link href='#'>
@@ -30,10 +26,10 @@ export default () => (
       </nav>
     ) : (
       <nav className='nav'>
-        <Link prefetch href='/'>
+        <Link href='/'>
           <a className='nav-item'> Home</a>
         </Link>
-        <Link	prefetch href="/about">
+        <Link href="/about">
           <a className='nav-item'> About</a>
         </Link>
       </nav>

@@ -150,6 +150,10 @@ async function getCurrentUser() {
 	return auth.currentUser
 }
 
+function isLoggedIn () {
+  return getCurrentUser() === null ? false : true
+}
+
 /* Error handling */
 function getErrorMessage(ctx, error) {
 	return errorMessages[ctx][error.code]
@@ -306,6 +310,7 @@ async function removeFriend(friendId, currentUserId) {
 
 export default {
 	login,
+	isLoggedIn,
 	register,
 	signOut,
 	resetPassword,

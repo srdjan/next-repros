@@ -7,10 +7,17 @@ const nextConfig = {
 	target: 'serverless',
 	webpack: config => {
 		config.plugins.push(new webpack.EnvironmentPlugin(env))
+		config.resolve.alias = {
+      ...config.resolve.alias,
+      react: 'preact/compat',
+      react$: 'preact/compat',
+      'react-dom': 'preact/compat',
+      'react-dom$': 'preact/compat',
+    }
 		return config
 	},
 	workboxOpts: {
-		swDest: 'static/service-worker.js',
+		swDest: 'public/service-worker.js',
 		runtimeCaching: [
 			{
 				urlPattern: /^https?.*/,
@@ -28,6 +35,11 @@ const nextConfig = {
 				},
 			},
 		],
+	},
+	experimental: {
+		css: true,
+		granularChunks: true,
+		modern: true,
 	},
 }
 

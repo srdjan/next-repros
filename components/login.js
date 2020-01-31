@@ -72,12 +72,12 @@ export default class extends React.Component {
               value='Log In'
             />
             <div className='links'>
-              <Link prefetch href='/forgotPassword'>
+              <Link href='/forgotPassword'>
                 <a>Forgot password ?</a>
               </Link>
 						</div>
 						<div className='links'>
-              <Link prefetch href='/register'>
+              <Link href='/register'>
                 <a>Register</a>
               </Link>
             </div>

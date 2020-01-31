@@ -1,8 +1,8 @@
 import * as React from 'react'
-import App, { Container } from 'next/app'
+import App from 'next/app'
 import Head from 'next/head'
 import Navigation from '../components/navigation'
-import { Provider, store } from '../services/store'
+import { store } from '../model/store'
 /*  */
 export default class MyApp extends App {
   constructor (props) {
@@ -85,63 +85,54 @@ export default class MyApp extends App {
           />
           <link
             rel='apple-touch-startup-image'
-            href='/static/images/K-192.png'
+            href='/public/images/K-192.png'
             media='(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
           />
           <link
             rel='apple-touch-startup-image'
-            href='/static/images/K-192.png'
+            href='/public/images/K-192.png'
             media='(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)'
           />
-          <link rel='apple-touch-icon' href='/static/images/K-192.png' />
+          <link rel='apple-touch-icon' href='/public/images/K-192.png' />
           <link
             rel='apple-touch-icon'
             sizes='152x152'
-            href='/static/images/K-152.png'
+            href='/public/images/K-152.png'
           />
           <link
             rel='apple-touch-icon'
             sizes='180x180'
-            href='/static/images/K-180.png'
+            href='/public/images/K-180.png'
           />
           <link
             rel='apple-touch-icon'
             sizes='167x167'
-            href='/static/images/K-167.png'
+            href='/public/images/K-167.png'
           />
           <meta name='application-name' content='PWA' />
-          <link rel='manifest' href='/static/manifest.json' />
+          <link rel='manifest' href='/public/manifest.json' />
 
           {/* Logo and favicon */}
-          <link rel='shortcut icon' href='/static/favicon.ico' />
+          <link rel='shortcut icon' href='/public/favicon.ico' />
           <link
             rel='mask-icon'
-            href='/static/favicon-mask.svg'
+            href='/public/favicon-mask.svg'
             color='#49B882'
           />
-          <link rel='icon' href='/static/favicon.ico' />
+          <link rel='icon' href='/public/favicon.ico' />
           {/* Font preload */}
           <link
             rel='preload'
-            href='/static/font/quicksand-latin.woff2'
+            href='/public/font/quicksand-latin.woff2'
             as='font'
             type='font/woff2'
           />
           <link
             rel='preload'
-            href='/static/font/quicksand-latin-ext.woff2'
+            href='/public/font/quicksand-latin-ext.woff2'
             as='font'
             type='font/woff2'
           />
-
-          {/* Firestore preconnect */}
-          <link rel='preconnect' href='https://firestore.googleapis.com' />
-          <link rel='dns-prefetch' href='https://firestore.googleapis.com' />
-
-          {/* Apple/Mobile meta */}
-          <meta name='mobile-web-app-capable' content='yes' />
-          <meta name='HandheldFriendly' content='true' />
-          <meta name='MobileOptimized' content='320' />
         </Head>
         <Navigation
           purchasedTicketsNumber={this.state.purchasedTickets}
@@ -149,11 +140,7 @@ export default class MyApp extends App {
           store={store}
         />
         <div className='content'>
-          <Provider>
-            <Container>
-              <Component {...pageProps} store={store} />
-            </Container>
-          </Provider>
+          <Component {...pageProps} store={store} />
         </div>
         {showPromptModal && (
           <div className='home-screen'>
@@ -162,7 +149,7 @@ export default class MyApp extends App {
                 className='home-screen-logo'
                 alt='PWA Logo'
                 title='PWA'
-                src='/static/images/PWA-192.png'
+                src='/public/images/PWA-192.png'
               />
               <div>
                 <h2 className='home-screen-title'>PWA</h2>

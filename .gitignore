@@ -1,5 +1,6 @@
 node_modules/
-static/sw.js
+public/sw.js
 .next
 *-error.log
 .DS_store
+.env
