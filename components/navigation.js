@@ -1,10 +1,4 @@
 import Link from 'next/link'
-import UsersManagement from '../model/usersManagament'
-
-function signOut () {
-  UsersManagement.signOut()
-  window.location = window.location.origin
-}
 
 export default () => (
   <div className='header'>
@@ -12,19 +6,6 @@ export default () => (
     <label className='toggle-container' htmlFor='toggle'>
       <span className='button button-toggle' />
     </label>
-    {UsersManagement.isLoggedIn() ? (
-      <nav className='nav'>
-        <Link href='/'>
-          <a className='nav-item'> Home</a>
-        </Link>
-        <Link href='/about'>
-          <a className='nav-item'> About</a>
-        </Link>
-        <Link href='#'>
-          <a className='nav-item' onClick={signOut}> Logout</a>
-        </Link>
-      </nav>
-    ) : (
       <nav className='nav'>
         <Link href='/'>
           <a className='nav-item'> Home</a>
@@ -33,7 +14,7 @@ export default () => (
           <a className='nav-item'> About</a>
         </Link>
       </nav>
-    )}
+  
     <style jsx>{`
       .header {
         position: relative;

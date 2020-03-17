@@ -8,32 +8,20 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "node server.js",
-    "build:next": "chmod -R u+x node_modules/next/dist/bin && next build",
-    "build": "npm run build:next",
-    "start:next": "next start",
-    "start": "NODE_ENV=production node server.js",
-    "deploy": "npm version patch && now --name=klinchit-mvp --public",
-    "format": "prettier-standard 'utils/*.js' 'lib/*.js' 'pages/*.js' 'components/*.js'"
+    "dev": "next",
+    "build": "next build && next export -o build",
+    "start": "NODE_ENV=production next start"
   },
   "dependencies": {
-    "dotenv": "8.2.0",
-    "firebase": "7.11.0",
-    "micro": "9.3.4",
-    "next-offline": "5.0.0",
-    "module-alias": "2.2.2",
-    "next": "9.3.0",
+    "next": "9.3.1-canary.5",
     "preact": "10.3.4",
     "preact-render-to-string": "5.1.4",
-    "qrcode.react": "1.0.0",
-    "rc-tooltip": "4.0.3",
-    "react-notify-toast": "0.5.1",
-    "storeon": "2.0.1",
-    "stripe": "8.32.0"
+    "react": "github:preact-compat/react#1.0.0",
+    "react-dom": "github:preact-compat/react-dom#1.0.0",
+    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.0.1",
+    "storeon": "2.0.1"
   },
   "devDependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
     "husky": "4.2.3",
     "prettier": "1.19.1",
     "prettier-standard": "16.2.1",

@@ -9,22 +9,11 @@ export default class MyApp extends App {
     super(props)
 
     this.state = {
-      purchasedTickets: [],
-      ownTicketsBids: 0,
       showPromptModal: false
     }
   }
 
   promptEvent = null
-
-  static async getInitialProps ({ Component, ctx }) {
-    let pageProps = {}
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
-
-    return { pageProps }
-  }
 
   async componentDidMount () {
     if ('serviceWorker' in navigator) {
@@ -135,8 +124,6 @@ export default class MyApp extends App {
           />
         </Head>
         <Navigation
-          purchasedTicketsNumber={this.state.purchasedTickets}
-          ownTicketsBids={this.state.ownTicketsBids}
           store={store}
         />
         <div className='content'>

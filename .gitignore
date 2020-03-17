@@ -4,3 +4,4 @@ public/sw.js
 *-error.log
 .DS_store
 .env
+build/
