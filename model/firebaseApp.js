@@ -4,11 +4,9 @@ export default async function loadFirebase() {
 	await import('firebase/firestore')
 	await import('firebase/storage')
 
-	let fb = firebase.firebase
-
 	let firebaseApp
-	if (!fb.apps.length) {
-		firebaseApp = fb.initializeApp({
+	if (!firebase.apps.length) {
+		firebaseApp = firebase.initializeApp({
 			projectId: '',
 			apiKey: '',
 			authDomain: '',
@@ -17,14 +15,13 @@ export default async function loadFirebase() {
 			messagingSenderId: 111122,
 		})
 	} else {
-		firebaseApp = fb.app()
+		firebaseApp = firebase.app()
 	}
 
 	const auth = firebaseApp.auth()
-	const storage = fb.storage().ref()
+	const storage = firebase.storage().ref()
 	const db = firebaseApp.firestore()
 	db.settings({})
 
-	const { firestore } = fb
-	return { auth, db, firestore, storage }
+	return { auth, db, storage }
 }

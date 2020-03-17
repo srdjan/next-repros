@@ -1,4 +1,4 @@
-import createStore from 'storeon'
+import {createStoreon} from 'storeon'
 
 const myTickets = store => {
 	store.on('@init', () => ({ myTickets: [] }))
@@ -22,5 +22,5 @@ const ticketsByEventId = store => {
 	})
 }
 
-export const store = createStore([myTickets, ticketsByEventId])
+export const store = createStoreon([myTickets, ticketsByEventId])
 
