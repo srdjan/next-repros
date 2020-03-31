@@ -1,6 +1,6 @@
 {
   "name": "next-repros",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Simple boilerplate to kickoff Next.JS PWA projects, includes firebase authentication",
   "main": "pages/index.js",
   "repository": {
@@ -13,19 +13,15 @@
     "start": "NODE_ENV=production next start"
   },
   "dependencies": {
-    "next": "9.3.1-canary.5",
+    "next": "9.3.3",
     "preact": "10.3.4",
     "preact-render-to-string": "5.1.4",
     "react": "github:preact-compat/react#1.0.0",
     "react-dom": "github:preact-compat/react-dom#1.0.0",
     "react-ssr-prepass": "npm:preact-ssr-prepass@^1.0.1",
-    "storeon": "2.0.1"
+    "storeon": "2.0.2"
   },
   "devDependencies": {
-    "husky": "4.2.3",
-    "prettier": "1.19.1",
-    "prettier-standard": "16.2.1",
-    "pretty-quick": "2.0.1",
     "webpack-cli": "3.3.11"
   },
   "keywords": [
