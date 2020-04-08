@@ -3,7 +3,7 @@ import App from 'next/app'
 import Head from 'next/head'
 import Navigation from '../components/navigation'
 import { store } from '../model/store'
-/*  */
+
 export default class MyApp extends App {
   constructor (props) {
     super(props)
