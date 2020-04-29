@@ -13,16 +13,15 @@
     "start": "NODE_ENV=production next start"
   },
   "dependencies": {
-    "next": "9.3.5-canary.5",
-    "preact": "10.3.4",
-    "preact-render-to-string": "5.1.4",
+    "next": "9.3.7-canary.0",
+    "preact": "10.4.1",
+    "preact-render-to-string": "5.1.6",
     "react": "github:preact-compat/react#1.0.0",
     "react-dom": "github:preact-compat/react-dom#1.0.0",
     "storeon": "2.0.2"
   },
   "devDependencies": {
-    "webpack-cli": "3.3.11",
-    "minimist": "1.2.5"
+    "webpack-cli": "3.3.11"
   },
   "keywords": [
     "nextjs",
