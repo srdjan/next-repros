@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
 import Navigation from '../components/navigation'
-import { store } from '../model/store'
 
 export default function App ({ Component, pageProps }) {
   return (
@@ -71,9 +70,9 @@ export default function App ({ Component, pageProps }) {
           type='font/woff2'
         />
       </Head>
-      <Navigation store={store} />
+      <Navigation />
       <div className='content'>
-        <Component {...pageProps} store={store} />
+        <Component {...pageProps} />
       </div>
       <style jsx global>{`
         /*!
