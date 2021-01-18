@@ -1,448 +1,378 @@
 import * as React from 'react'
-import App from 'next/app'
 import Head from 'next/head'
 import Navigation from '../components/navigation'
 import { store } from '../model/store'
 
-export default class MyApp extends App {
-  constructor (props) {
-    super(props)
+export default function App ({ Component, pageProps }) {
+  return (
+    <>
+      <Head>
+        <title>PWA Kickoff</title>
+        <meta name='description' content='PWA - ticket marketplace' />
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1.0'
+        />
+        <meta name='theme-color' content='#547599' />
+        <meta name='apple-mobile-web-app-title' content='PWA' />
+        <meta name='apple-mobile-web-app-capable' content='yes' />
+        <meta
+          name='apple-mobile-web-app-status-bar-style'
+          content='default'
+        />
+        <link
+          rel='apple-touch-startup-image'
+          href='/public/images/K-192.png'
+          media='(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+        />
+        <link
+          rel='apple-touch-startup-image'
+          href='/public/images/K-192.png'
+          media='(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)'
+        />
+        <link rel='apple-touch-icon' href='/public/images/K-192.png' />
+        <link
+          rel='apple-touch-icon'
+          sizes='152x152'
+          href='/public/images/K-152.png'
+        />
+        <link
+          rel='apple-touch-icon'
+          sizes='180x180'
+          href='/public/images/K-180.png'
+        />
+        <link
+          rel='apple-touch-icon'
+          sizes='167x167'
+          href='/public/images/K-167.png'
+        />
+        <meta name='application-name' content='PWA' />
+        <link rel='manifest' href='/public/manifest.json' />
 
-    this.state = {
-      showPromptModal: false
-    }
-  }
+        {/* Logo and favicon */}
+        <link rel='shortcut icon' href='/public/favicon.ico' />
+        <link
+          rel='mask-icon'
+          href='/public/favicon-mask.svg'
+          color='#49B882'
+        />
+        <link rel='icon' href='/public/favicon.ico' />
+        {/* Font preload */}
+        <link
+          rel='preload'
+          href='/public/font/quicksand-latin.woff2'
+          as='font'
+          type='font/woff2'
+        />
+        <link
+          rel='preload'
+          href='/public/font/quicksand-latin-ext.woff2'
+          as='font'
+          type='font/woff2'
+        />
+      </Head>
+      <Navigation store={store} />
+      <div className='content'>
+        <Component {...pageProps} store={store} />
+      </div>
+      <style jsx global>{`
+        /*!
+        * Writ v1.0.4
+        *
+        * Copyright © 2015, Curtis McEnroe <curtis@cmcenroe.me>
+        *
+        * https://cmcenroe.me/writ/LICENSE (ISC)
+        */
 
-  promptEvent = null
+        /* Fonts, sizes & vertical rhythm */
 
-  async componentDidMount () {
-    if ('serviceWorker' in navigator) {
-      try {
-        const res = await navigator.serviceWorker.register('/service-worker.js')
-        console.log('Service worker registration successful', res)
-      } catch (e) {
-        console.log('Service worker registration failed', e.message)
-      }
-    }
+        html {
+          font-family: Palatino, Georgia, Lucida Bright, Book Antiqua, serif;
+          font-size: 16px;
+          line-height: 1.5rem;
+        }
 
-    window.addEventListener('beforeinstallprompt', e => {
-      console.log('stored event - time for modal')
-      e.preventDefault()
-      this.promptEvent = e
-      this.toggleModal()
-    })
-  }
+        code,
+        pre,
+        samp,
+        kbd {
+          font-family: Consolas, Liberation Mono, Menlo, Courier, monospace;
+          font-size: 0.833rem;
+        }
 
-  installApp = () => {
-    this.promptEvent.prompt()
-    this.promptEvent.userChoice.then(res => {
-      if (res.outcome === 'accepted') {
-        console.log('User accepted the A2HS prompt')
-      } else {
-        console.log('User dismissed the A2HS prompt')
-      }
-      this.closeModal()
-    })
-  }
+        kbd {
+          font-weight: bold;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        th {
+          font-weight: normal;
+        }
 
-  closeModal = () => {
-    this.promptEvent = null
-    this.toggleModal()
-  }
+        /* Minor third */
+        h1 {
+          font-size: 2.488em;
+        }
+        h2 {
+          font-size: 2.074em;
+        }
+        h3 {
+          font-size: 1.728em;
+        }
+        h4 {
+          font-size: 1.44em;
+        }
+        h5 {
+          font-size: 1.2em;
+        }
+        h6 {
+          font-size: 1em;
+        }
+        small {
+          font-size: 0.833em;
+        }
 
-  toggleModal = () =>
-    this.setState({ showPromptModal: !this.state.showPromptModal })
+        h1,
+        h2,
+        h3 {
+          line-height: 3rem;
+        }
 
-  render () {
-    const { showPromptModal } = this.state
-    const { Component, pageProps } = this.props
-    return (
-      <React.Fragment>
-        <Head>
-          <title>PWA Kickoff</title>
-          <meta name='description' content='PWA - ticket marketplace' />
-          <meta
-            name='viewport'
-            content='width=device-width, initial-scale=1.0'
-          />
-          <meta name='theme-color' content='#547599' />
-          <meta name='apple-mobile-web-app-title' content='PWA' />
-          <meta name='apple-mobile-web-app-capable' content='yes' />
-          <meta
-            name='apple-mobile-web-app-status-bar-style'
-            content='default'
-          />
-          <link
-            rel='apple-touch-startup-image'
-            href='/public/images/K-192.png'
-            media='(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
-          />
-          <link
-            rel='apple-touch-startup-image'
-            href='/public/images/K-192.png'
-            media='(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)'
-          />
-          <link rel='apple-touch-icon' href='/public/images/K-192.png' />
-          <link
-            rel='apple-touch-icon'
-            sizes='152x152'
-            href='/public/images/K-152.png'
-          />
-          <link
-            rel='apple-touch-icon'
-            sizes='180x180'
-            href='/public/images/K-180.png'
-          />
-          <link
-            rel='apple-touch-icon'
-            sizes='167x167'
-            href='/public/images/K-167.png'
-          />
-          <meta name='application-name' content='PWA' />
-          <link rel='manifest' href='/public/manifest.json' />
+        p,
+        ul,
+        ol,
+        dl,
+        table,
+        blockquote,
+        pre,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          margin: 1.5rem 0 0;
+        }
+        ul ul,
+        ol ol,
+        ul ol,
+        ol ul {
+          margin: 0;
+        }
 
-          {/* Logo and favicon */}
-          <link rel='shortcut icon' href='/public/favicon.ico' />
-          <link
-            rel='mask-icon'
-            href='/public/favicon-mask.svg'
-            color='#49B882'
-          />
-          <link rel='icon' href='/public/favicon.ico' />
-          {/* Font preload */}
-          <link
-            rel='preload'
-            href='/public/font/quicksand-latin.woff2'
-            as='font'
-            type='font/woff2'
-          />
-          <link
-            rel='preload'
-            href='/public/font/quicksand-latin-ext.woff2'
-            as='font'
-            type='font/woff2'
-          />
-        </Head>
-        <Navigation store={store} />
-        <div className='content'>
-          <Component {...pageProps} store={store} />
-        </div>
-        {showPromptModal && (
-          <div className='home-screen'>
-            <div className='home-screen-row'>
-              <img
-                className='home-screen-logo'
-                alt='PWA Logo'
-                title='PWA'
-                src='/public/images/PWA-192.png'
-              />
-              <div>
-                <h2 className='home-screen-title'>PWA</h2>
-                <h4 className='home-screen-link'>PWA.app</h4>
-              </div>
-            </div>
-            <button onClick={this.installApp}>Install App</button>
-          </div>
-        )}
-        <style jsx global>{`
-          /*!
-          * Writ v1.0.4
-          *
-          * Copyright © 2015, Curtis McEnroe <curtis@cmcenroe.me>
-          *
-          * https://cmcenroe.me/writ/LICENSE (ISC)
-          */
+        hr {
+          margin: 0;
+          border: none;
+          padding: 1.5rem 0 0;
+        }
 
-          /* Fonts, sizes & vertical rhythm */
+        /* Accounting for borders */
+        table {
+          line-height: calc(1.5rem - 1px);
+          margin-bottom: -1px;
+        }
+        pre {
+          margin-top: calc(1.5rem - 1px);
+          margin-bottom: -1px;
+        }
 
-          html {
-            font-family: Palatino, Georgia, Lucida Bright, Book Antiqua, serif;
-            font-size: 16px;
-            line-height: 1.5rem;
-          }
+        /* Colors */
 
-          code,
-          pre,
-          samp,
-          kbd {
-            font-family: Consolas, Liberation Mono, Menlo, Courier, monospace;
-            font-size: 0.833rem;
-          }
+        body {
+          color: #222;
+        }
+        code,
+        pre,
+        samp,
+        kbd {
+          color: #111;
+        }
+        a,
+        header nav a:visited,
+        a code {
+          color: #00e;
+        }
+        a:visited,
+        a:visited code {
+          color: #60b;
+        }
+        mark {
+          color: inherit;
+        }
 
-          kbd {
-            font-weight: bold;
-          }
-          h1,
-          h2,
-          h3,
-          h4,
-          h5,
-          h6,
-          th {
-            font-weight: normal;
-          }
+        code,
+        pre,
+        samp,
+        thead,
+        tfoot {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+        mark {
+          background-color: #fe0;
+        }
 
-          /* Minor third */
-          h1 {
-            font-size: 2.488em;
-          }
-          h2 {
-            font-size: 2.074em;
-          }
-          h3 {
-            font-size: 1.728em;
-          }
-          h4 {
-            font-size: 1.44em;
-          }
-          h5 {
-            font-size: 1.2em;
-          }
-          h6 {
-            font-size: 1em;
-          }
-          small {
-            font-size: 0.833em;
-          }
+        main aside,
+        blockquote,
+        ins {
+          border: solid rgba(0, 0, 0, 0.05);
+        }
+        pre,
+        code,
+        samp {
+          border: solid rgba(0, 0, 0, 0.1);
+        }
+        th,
+        td {
+          border: solid #dbdbdb;
+        }
 
-          h1,
-          h2,
-          h3 {
-            line-height: 3rem;
-          }
+        /* Layout */
 
-          p,
-          ul,
-          ol,
-          dl,
-          table,
-          blockquote,
-          pre,
-          h1,
-          h2,
-          h3,
-          h4,
-          h5,
-          h6 {
-            margin: 1.5rem 0 0;
-          }
-          ul ul,
-          ol ol,
-          ul ol,
-          ol ul {
-            margin: 0;
-          }
+        body {
+          margin: 1.5rem 1ch;
+        }
 
-          hr {
-            margin: 0;
-            border: none;
-            padding: 1.5rem 0 0;
-          }
+        body > header {
+          text-align: center;
+        }
 
-          /* Accounting for borders */
-          table {
-            line-height: calc(1.5rem - 1px);
-            margin-bottom: -1px;
-          }
-          pre {
-            margin-top: calc(1.5rem - 1px);
-            margin-bottom: -1px;
-          }
+        main,
+        body > footer {
+          display: block; /* Just in case */
+          max-width: 78ch;
+          margin: auto;
+        }
 
-          /* Colors */
+        main figure,
+        main aside {
+          float: right;
+          margin: 1.5rem 0 0 1ch;
+        }
 
-          body {
-            color: #222;
-          }
-          code,
-          pre,
-          samp,
-          kbd {
-            color: #111;
-          }
-          a,
-          header nav a:visited,
-          a code {
-            color: #00e;
-          }
-          a:visited,
-          a:visited code {
-            color: #60b;
-          }
-          mark {
-            color: inherit;
-          }
+        main aside {
+          max-width: 26ch;
+          border-width: 0 0 0 0.5ch;
+          padding: 0 0 0 0.5ch;
+        }
 
-          code,
-          pre,
-          samp,
-          thead,
-          tfoot {
-            background-color: rgba(0, 0, 0, 0.05);
-          }
-          mark {
-            background-color: #fe0;
-          }
+        /* Copy blocks */
 
-          main aside,
-          blockquote,
-          ins {
-            border: solid rgba(0, 0, 0, 0.05);
-          }
-          pre,
-          code,
-          samp {
-            border: solid rgba(0, 0, 0, 0.1);
-          }
-          th,
-          td {
-            border: solid #dbdbdb;
-          }
+        blockquote {
+          margin-right: 3ch;
+          margin-left: 1.5ch;
+          border-width: 0 0 0 0.5ch;
+          padding: 0 0 0 1ch;
+        }
 
-          /* Layout */
+        pre {
+          border-width: 1px;
+          border-radius: 2px;
+          padding: 0 0.5ch;
+          overflow-x: auto;
+        }
+        pre code {
+          border: none;
+          padding: 0;
+          background-color: transparent;
+          white-space: inherit;
+        }
 
-          body {
-            margin: 1.5rem 1ch;
-          }
+        img {
+          max-width: 100%;
+        }
 
-          body > header {
-            text-align: center;
-          }
+        /* Lists */
 
-          main,
-          body > footer {
-            display: block; /* Just in case */
-            max-width: 78ch;
-            margin: auto;
-          }
+        ul,
+        ol,
+        dd {
+          padding: 0 0 0 3ch;
+        }
+        dd {
+          margin: 0;
+        }
 
-          main figure,
-          main aside {
-            float: right;
-            margin: 1.5rem 0 0 1ch;
-          }
+        ul > li {
+          list-style-type: disc;
+        }
+        li ul > li {
+          list-style-type: circle;
+        }
+        li li ul > li {
+          list-style-type: square;
+        }
 
-          main aside {
-            max-width: 26ch;
-            border-width: 0 0 0 0.5ch;
-            padding: 0 0 0 0.5ch;
-          }
+        ol > li {
+          list-style-type: decimal;
+        }
+        li ol > li {
+          list-style-type: lower-roman;
+        }
+        li li ol > li {
+          list-style-type: lower-alpha;
+        }
 
-          /* Copy blocks */
+        nav ul {
+          padding: 0;
+          list-style-type: none;
+        }
+        nav ul li {
+          display: inline;
+          padding-left: 1ch;
+          white-space: nowrap;
+        }
+        nav ul li:first-child {
+          padding-left: 0;
+        }
 
-          blockquote {
-            margin-right: 3ch;
-            margin-left: 1.5ch;
-            border-width: 0 0 0 0.5ch;
-            padding: 0 0 0 1ch;
-          }
+        /* Tables */
 
-          pre {
-            border-width: 1px;
-            border-radius: 2px;
-            padding: 0 0.5ch;
-            overflow-x: auto;
-          }
-          pre code {
-            border: none;
-            padding: 0;
-            background-color: transparent;
-            white-space: inherit;
-          }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          overflow-x: auto;
+        }
 
-          img {
-            max-width: 100%;
-          }
+        th,
+        td {
+          border-width: 1px;
+          padding: 0 0.5ch;
+        }
 
-          /* Lists */
+        /* Copy inline */
 
-          ul,
-          ol,
-          dd {
-            padding: 0 0 0 3ch;
-          }
-          dd {
-            margin: 0;
-          }
+        a {
+          text-decoration: none;
+        }
 
-          ul > li {
-            list-style-type: disc;
-          }
-          li ul > li {
-            list-style-type: circle;
-          }
-          li li ul > li {
-            list-style-type: square;
-          }
+        sup,
+        sub {
+          font-size: 0.75em;
+          line-height: 1em;
+        }
 
-          ol > li {
-            list-style-type: decimal;
-          }
-          li ol > li {
-            list-style-type: lower-roman;
-          }
-          li li ol > li {
-            list-style-type: lower-alpha;
-          }
+        ins {
+          border-width: 1px;
+          padding: 1px;
+          text-decoration: none;
+        }
 
-          nav ul {
-            padding: 0;
-            list-style-type: none;
-          }
-          nav ul li {
-            display: inline;
-            padding-left: 1ch;
-            white-space: nowrap;
-          }
-          nav ul li:first-child {
-            padding-left: 0;
-          }
+        mark {
+          padding: 1px;
+        }
 
-          /* Tables */
-
-          table {
-            width: 100%;
-            border-collapse: collapse;
-            overflow-x: auto;
-          }
-
-          th,
-          td {
-            border-width: 1px;
-            padding: 0 0.5ch;
-          }
-
-          /* Copy inline */
-
-          a {
-            text-decoration: none;
-          }
-
-          sup,
-          sub {
-            font-size: 0.75em;
-            line-height: 1em;
-          }
-
-          ins {
-            border-width: 1px;
-            padding: 1px;
-            text-decoration: none;
-          }
-
-          mark {
-            padding: 1px;
-          }
-
-          code,
-          samp {
-            border-width: 1px;
-            border-radius: 2px;
-            padding: 0.1em 0.2em;
-            white-space: nowrap;
-          }
-        `}</style>
-      </React.Fragment>
-    )
-  }
+        code,
+        samp {
+          border-width: 1px;
+          border-radius: 2px;
+          padding: 0.1em 0.2em;
+          white-space: nowrap;
+        }
+      `}</style>
+    </>
+  )
 }
