@@ -6,15 +6,14 @@ export default () => (
     <label className='toggle-container' htmlFor='toggle'>
       <span className='button button-toggle' />
     </label>
-      <nav className='nav'>
-        <Link href='/'>
-          <a className='nav-item'> Home</a>
-        </Link>
-        <Link href="/about">
-          <a className='nav-item'> About</a>
-        </Link>
-      </nav>
-  
+    <nav className='nav'>
+      <Link href='/'>
+        <a className='nav-item'> Home</a>
+      </Link>
+      <Link href='/about'>
+        <a className='nav-item'> About</a>
+      </Link>
+    </nav>
     <style jsx>{`
       .header {
         position: relative;
@@ -136,6 +135,7 @@ export default () => (
         transform: translateY(-50%) scaleY(5);
         transition: 0.5s;
       }
-    `}</style>
+    `}
+    </style>
   </div>
 )

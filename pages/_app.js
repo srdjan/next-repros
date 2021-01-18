@@ -372,7 +372,8 @@ export default function App ({ Component, pageProps }) {
           padding: 0.1em 0.2em;
           white-space: nowrap;
         }
-      `}</style>
+      `}
+      </style>
     </>
   )
 }
