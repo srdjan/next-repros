@@ -1,6 +1,6 @@
 {
   "name": "next-repros",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Repo for Next.js testing",
   "main": "pages/index.js",
   "repository": {
@@ -13,13 +13,13 @@
     "start": "NODE_ENV=production next start"
   },
   "dependencies": {
-    "next": "10.0.2-canary.17",
+    "next": "10.0.6-canary.4",
     "next-plugin-preact": "3.0.3",
-    "preact": "10.5.7",
+    "preact": "10.5.10",
     "preact-render-to-string": "5.1.12",
     "react": "github:preact-compat/react#1.0.0",
     "react-dom": "github:preact-compat/react-dom#1.0.0",
-    "storeon": "3.1.1"
+    "storeon": "3.1.4"
   },
   "devDependencies": {},
   "keywords": [
