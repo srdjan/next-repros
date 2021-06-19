@@ -1,8 +1,7 @@
-import * as React from 'react'
 import Head from 'next/head'
 import Navigation from '../components/navigation'
 
-export default function App ({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>

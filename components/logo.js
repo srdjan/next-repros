@@ -1,12 +1,15 @@
-export default () => (
+import Image from 'next/image'
+
+const Logo = () => (
   <span>
     <div className='logo'>
       <a href='/'>
-        <img
+        <Image
           src='/public/img/logo.png'
           width='100'
           height='20'
           alt='NextJsPWAKicker'
+          placeholder='blur'
         />
       </a>
     </div>
@@ -19,3 +22,4 @@ export default () => (
         `}</style>
   </span>
 )
+export default Logo

@@ -1,6 +1,6 @@
 {
   "name": "next-repros",
-  "version": "1.1.10",
+  "version": "1.2.0",
   "description": "Repo for preact/ next.js testing",
   "main": "pages/index.js",
   "repository": {
@@ -13,15 +13,22 @@
     "start": "NODE_ENV=production next start"
   },
   "dependencies": {
-    "next": "10.0.8-canary.15",
-    "next-plugin-preact": "3.0.3",
-    "preact": "10.5.12",
+    "@firebase/app": "0.6.27",
+    "@firebase/auth": "0.16.7",
+    "@firebase/firestore": "2.3.7",
+    "next": "11.0.1-canary.5",
+    "next-plugin-preact": "3.0.6",
+    "preact": "10.5.13",
     "preact-refresh": "0.4.1",
-    "preact-render-to-string": "5.1.12",
+    "preact-render-to-string": "5.1.19",
     "react": "npm:@preact/compat@0.0.4",
-    "react-dom": "npm:@preact/compat@0.0.4"
+    "react-dom": "npm:@preact/compat@0.0.4",
+    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.1.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "7.29.0",
+    "eslint-config-next": "11.0.0"
+  },
   "keywords": [
     "nextjs",
     "preact"

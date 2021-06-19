@@ -1,7 +1,6 @@
-import React from 'react'
 import Link from 'next/link'
 
-export default () => (
+const About = () => (
   <div>
     <h1>We are the champions!</h1>
     <Link href='/'>
@@ -9,3 +8,4 @@ export default () => (
     </Link>
   </div>
 )
+export default About

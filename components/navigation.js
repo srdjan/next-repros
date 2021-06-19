@@ -1,20 +1,27 @@
 import Link from 'next/link'
+import Logo from './logo'
+import loadFirebase from '../components/firebase'
 
-export default () => (
-  <div className='header'>
-    <input id='toggle' type='checkbox' />
-    <label className='toggle-container' htmlFor='toggle'>
-      <span className='button button-toggle' />
-    </label>
-    <nav className='nav'>
-      <Link href='/'>
-        <a className='nav-item'> Home</a>
-      </Link>
-      <Link href='/about'>
-        <a className='nav-item'> About</a>
-      </Link>
-    </nav>
-    <style jsx>{`
+const Navigation = async () => {
+  const { auth } = await loadFirebase()
+  await auth.setPersistence('session')
+
+  return (
+    <div className='header'>
+      <input id='toggle' type='checkbox' />
+      <label className='toggle-container' htmlFor='toggle'>
+        <span className='button button-toggle' />
+      </label>
+      <nav className='nav'>
+        <Logo />
+        <Link href='/'>
+          <a className='nav-item'> Home</a>
+        </Link>
+        <Link href='/about'>
+          <a className='nav-item'> About</a>
+        </Link>
+      </nav>
+      <style jsx>{`
       .header {
         position: relative;
         z-index: 99999;
@@ -136,6 +143,9 @@ export default () => (
         transition: 0.5s;
       }
     `}
-    </style>
-  </div>
-)
+      </style>
+    </div>
+  )
+}
+
+export default Navigation

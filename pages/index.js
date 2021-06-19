@@ -1,7 +1,6 @@
-import React from 'react'
-
-export default () => (
+const Index = () => (
   <div>
     <h1>Hello, world!</h1>
   </div>
 )
+export default Index
